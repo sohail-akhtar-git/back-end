@@ -7,17 +7,25 @@ on:
     branches: [ "master" ]
 
 jobs:
-
-  build:
-
+  
+  docker:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Build and push to docker hub
-      uses: cloudposse/github-action-docker-build-push@main
-      with:
-        registry: registry.hub.docker.com
-        organization: "${{ github.event.repository.owner.login }}"
-        repository: "${{ github.event.repository.name }}"
-        login: "${{ secrets.DOCKERHUB_USERNAME }}"
-        password: "${{ secrets.DOCKERHUB_PASSWORD }}"
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Build & Push to Docker Hub
+        uses: opspresso/action-docker@master
+        with:
+          args: --docker
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          TAG_NAME: "v0.0.1"
+          BUILDX: "true"
+  
+
+
+  
