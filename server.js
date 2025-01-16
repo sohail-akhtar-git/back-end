@@ -1,5 +1,7 @@
 var db = require("./database/database.js");
 const express = require("express");
+const cors = require("cors");
+
 const bcrypt = require("bcryptjs");
 const solr = require("solr-node");
 const jwt = require("jsonwebtoken");
@@ -13,6 +15,7 @@ const port = 5000;
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 const client = new solr({
   host: "localhost", // Solr server host
