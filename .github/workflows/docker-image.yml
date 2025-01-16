@@ -20,7 +20,7 @@ jobs:
 
       - name: push on docker
         run: |
-          docker login sohailakhtar1 -p ${{secrets.DOCKER_PASSWORD}}
+          docker login -u sohailakhtar1 -p ${{secrets.DOCKER_PASSWORD}}
           docker push sohailakhtar1/backend:latest
 
 
