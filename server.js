@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 const client = new solr({
-  host: "192.168.0.121", // Change from localhost to solr
+  host: "solr", // Change from localhost to solr
   port: "8983", // Solr server port (default is 8983)
   core: "productCore", // Solr core (replace with your core name)
   protocol: "http", // Protocol (can be http or https)
